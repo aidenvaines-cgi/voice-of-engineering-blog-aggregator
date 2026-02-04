@@ -38,6 +38,15 @@
             "profile_picture_url": "",
             "include_tags": ["python", "javascript", "devops"],
             "exclude_tags": ["sponsored", "advertisement"]
+        },
+        {
+            "name": "Siddharth Nair",
+            "url": "https://sidssn.github.io/",
+            "feed_url": "https://sidssn.github.io/index.xml",
+            "type": "custom",
+            "enabled": true,
+            "linkedin_url": "https://www.linkedin.com/in/siddharth-nair-161b65a8/",
+            "profile_picture_url": "https://media.licdn.com/dms/image/v2/D4E03AQESmxW0rAKKuQ/profile-displayphoto-shrink_200_200/B4EZYLQ1bHHUAY-/0/1743945685261?e=1772064000&v=beta&t=nb9gvG5LhAQSbKChHGOZJn4-d0oW7JTqf7-VRhbnbsY"
         }
     ],
     "settings": {
