@@ -1,0 +1,73 @@
+# Site-wide translations for English
+[site_title]
+other = "Voice of Engineering Blog Aggregator"
+
+[site_subtitle]
+other = "Thought leadership from our experts"
+
+# Hero sections
+[hero_title_home]
+other = "CGI Engineering Blogs"
+
+[hero_title_authors]
+other = "Our Contributors"
+
+[hero_subtitle_authors]
+other = "Meet the experts sharing their insights"
+
+[hero_title_categories]
+other = "Browse by Category"
+
+[hero_subtitle_categories]
+other = "Select a category to view related posts"
+
+# Post/Author pages
+[posts_by_author]
+other = "Posts by {{ .Author }}"
+
+[posts_tagged_with]
+other = "Posts tagged with {{ .Tag }}"
+
+# Actions
+[read_blog]
+other = "Read the blog"
+
+[read_blogs]
+other = "Read the blogs"
+
+[view_all_posts]
+other = "View all posts"
+
+[visit_website]
+other = "Visit website"
+
+[linkedin_profile]
+other = "LinkedIn Profile"
+
+[by_author]
+other = "By {{ .Author }}"
+
+# Disclaimer
+[disclaimer_title]
+other = "Note:"
+
+[disclaimer_text]
+other = "The views and opinions expressed in these blogs are those of the individual authors and do not necessarily reflect the official policy or position of CGI."
+
+# Empty states
+[no_authors]
+other = "No authors found. Run the feed aggregator to populate author data."
+
+[no_categories]
+other = "No categories available yet."
+
+# Footer
+[copyright]
+other = "Copyright CGI {{ .Year }}. All rights reserved."
+
+# Images
+[default_hero_alt]
+other = "Engineers collaborating"
+
+[default_post_alt]
+other = "Code on screen"

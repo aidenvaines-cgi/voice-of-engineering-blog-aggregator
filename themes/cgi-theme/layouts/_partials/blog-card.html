@@ -1,0 +1,45 @@
+{{/* Blog card partial - displays a single blog post card */}}
+{{/* Usage: {{ partial "blog-card.html" . }} where . is a Page */}}
+
+<article class="teaser-related">
+    <div class="blg-container">
+        {{ if .Params.featured_image }}
+        <span class="feature-image">
+            <a href="{{ if .Params.external_url }}{{ .Params.external_url }}{{ else }}{{ .RelPermalink }}{{ end }}" {{ if .Params.external_url }}target="_blank" rel="noopener"{{ end }}>
+                <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" loading="lazy">
+            </a>
+        </span>
+        {{ end }}
+        <div class="content-wrapper">
+            <div class="post-title">
+                <a href="{{ if .Params.external_url }}{{ .Params.external_url }}{{ else }}{{ .RelPermalink }}{{ end }}" {{ if .Params.external_url }}target="_blank" rel="noopener"{{ end }} class="title-link">
+                    <span class="client-title">{{ .Title }}</span>
+                </a>
+            </div>
+            <div class="post-summary">
+                <p>{{ .Summary }}</p>
+            </div>
+            <div class="post-meta">
+                {{ if .Params.authors }}
+                <div class="post-author">
+                    {{ $author := index .Params.authors 0 }}
+                    {{ if .Params.linkedin_url }}
+                    <a href="{{ .Params.linkedin_url }}" target="_blank" rel="noopener" class="author-link">
+                        {{ i18n "by_author" (dict "Author" (upper $author)) }}
+                    </a>
+                    {{ else }}
+                    <span class="author-text">{{ i18n "by_author" (dict "Author" (upper $author)) }}</span>
+                    {{ end }}
+                </div>
+                {{ end }}
+                <div class="discover-more-lnk">
+                    <a href="{{ if .Params.external_url }}{{ .Params.external_url }}{{ else }}{{ .RelPermalink }}{{ end }}" 
+                       class="more-link" 
+                       {{ if .Params.external_url }}target="_blank" rel="noopener"{{ end }}>
+                       {{ if or (eq .Section "tags") (eq .Section "authors") }}{{ i18n "read_blogs" }}{{ else }}{{ i18n "read_blog" }}{{ end }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

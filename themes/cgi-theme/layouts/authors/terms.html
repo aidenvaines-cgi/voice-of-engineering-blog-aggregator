@@ -1,0 +1,80 @@
+{{ define "main" }}
+<div class="container">
+    <div class="hero-section block-display">
+        <h1 class="hero-title">{{ i18n "hero_title_authors" }}</h1>
+        <p class="hero-subtitle">{{ i18n "hero_subtitle_authors" }}</p>
+    </div>
+
+    {{ $authorsData := .Site.Data.authors }}
+    {{ if $authorsData }}
+    <div class="related-media blog-client-stories-wrapper">
+        <div class="main-feature no-subfeature">
+            {{ range $authorsData.authors }}
+            <article class="teaser-related author-card">
+                <div class="blg-container">
+                    {{ if .url }}
+                    <a href="{{ .url }}" target="_blank" rel="noopener" class="feature-image author-name-link">
+                    {{ else }}
+                    <span class="feature-image">
+                    {{ end }}
+                        {{ if .profile_picture_url }}
+                        <img src="{{ .profile_picture_url }}" alt="{{ .name }}" loading="lazy">
+                        {{ else }}
+                        <div class="default-avatar">
+                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="8" r="4" fill="#999"/>
+                                <path d="M4 20c0-4 3.5-7 8-7s8 3 8 7" stroke="#999" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        {{ end }}
+                    {{ if .url }}
+                    </a>
+                    {{ else }}
+                    </span>
+                    {{ end }}
+                    <div class="content-wrapper">
+                        <div class="overlay title">
+                            <div class="title">
+                                {{ if .url }}
+                                <a href="{{ .url }}" target="_blank" rel="noopener" class="author-name-link">
+                                    <span class="client-title author-name">{{ .name }}</span>
+                                </a>
+                                {{ else }}
+                                <span class="client-title author-name">{{ .name }}</span>
+                                {{ end }}
+                                {{ if .linkedin_url }}
+                                <p>
+                                    <a href="{{ .linkedin_url }}" target="_blank" rel="noopener" class="linkedin-link">
+                                        <svg class="linkedin-icon" fill="#0077B5" viewBox="0 0 24 24">
+                                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                        </svg>
+                                        {{ i18n "linkedin_profile" }}
+                                    </a>
+                                </p>
+                                {{ end }}
+                            </div>
+                        </div>
+                        <div class="title">
+                            <div class="discover-more-lnk">
+                                <a href="{{ printf "/authors/%s" (.name | urlize) | relURL }}" class="more-link">
+                                    {{ i18n "view_all_posts" }}
+                                </a>
+                                {{ if .url }}
+                                <br>
+                                <a href="{{ .url }}" class="more-link website-link" target="_blank" rel="noopener">
+                                    {{ i18n "visit_website" }}
+                                </a>
+                                {{ end }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            {{ end }}
+        </div>
+    </div>
+    {{ else }}
+    <p class="empty-state">{{ i18n "no_authors" }}</p>
+    {{ end }}
+</div>
+{{ end }}

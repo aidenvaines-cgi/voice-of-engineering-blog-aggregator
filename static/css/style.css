@@ -1,0 +1,343 @@
+/* CGI Corporate Branding */
+:root {
+    --cgi-red: #c8102e;
+    --cgi-dark-gray: #333333;
+    --cgi-light-gray: #f5f5f5;
+    --cgi-border-gray: #e0e0e0;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: #ffffff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background: var(--cgi-dark-gray);
+    color: white;
+    padding: 1.5rem 0;
+    margin-bottom: 3rem;
+}
+
+header h1 {
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+header h1 a {
+    color: white;
+    text-decoration: none;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+header nav a:hover {
+    color: var(--cgi-red);
+}
+
+main {
+    min-height: 60vh;
+}
+
+/* Page Titles */
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--cgi-dark-gray);
+}
+
+.page-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    font-weight: 400;
+}
+
+/* Blog Card Grid */
+.posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Blog Card */
+.post-card {
+    background: white;
+    border: 1px solid var(--cgi-border-gray);
+    border-radius: 0;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.post-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.post-card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: var(--cgi-light-gray);
+}
+
+.post-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.post-card:hover .post-card-image img {
+    transform: scale(1.05);
+}
+
+.post-card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.post-category {
+    color: var(--cgi-red);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.post-card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+    color: var(--cgi-dark-gray);
+}
+
+.post-card-title a {
+    color: var(--cgi-dark-gray);
+    text-decoration: none;
+}
+
+.post-card-title a:hover {
+    color: var(--cgi-red);
+}
+
+.post-card-excerpt {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.post-card-meta {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.post-card-meta .author {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.post-card-meta .author::before {
+    content: "";
+    margin-right: 0;
+}
+
+.post-card-link {
+    display: inline-block;
+    color: var(--cgi-red);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.post-card-link:hover {
+    color: #a00d25;
+    text-decoration: underline;
+}
+
+.post-card-link::after {
+    content: " →";
+}
+
+/* Single Post Page */
+.post {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.post-featured-image {
+    margin: 2rem 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.post-featured-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.external-notice {
+    background: #fff3cd;
+    border-left: 4px solid var(--cgi-red);
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+    border-radius: 0;
+}
+
+.external-notice strong {
+    color: var(--cgi-red);
+}
+
+.external-notice a {
+    color: var(--cgi-red);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.external-notice a:hover {
+    text-decoration: underline;
+}
+
+.post h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--cgi-dark-gray);
+    font-weight: 600;
+}
+
+.post-meta {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--cgi-border-gray);
+}
+
+.author {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-left: 1rem;
+}
+
+.content {
+    margin: 2rem 0;
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.external-link-footer {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: var(--cgi-light-gray);
+    border-radius: 4px;
+    text-align: center;
+}
+
+.button {
+    display: inline-block;
+    background: var(--cgi-red);
+    color: white;
+    padding: 0.875rem 2rem;
+    border-radius: 0;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    font-size: 1rem;
+}
+
+.button:hover {
+    background: #a00d25;
+}
+
+.tags {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--cgi-border-gray);
+}
+
+.tags a {
+    display: inline-block;
+    background: var(--cgi-light-gray);
+    color: var(--cgi-dark-gray);
+    padding: 0.4rem 1rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: background 0.3s ease;
+}
+
+.tags a:hover {
+    background: var(--cgi-red);
+    color: white;
+}
+
+/* Footer */
+footer {
+    margin-top: 5rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--cgi-border-gray);
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    background: var(--cgi-light-gray);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .posts {
+        grid-template-columns: 1fr;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    header nav ul {
+        gap: 1rem;
+    }
+}

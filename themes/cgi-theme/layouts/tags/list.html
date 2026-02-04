@@ -1,0 +1,41 @@
+{{ define "main" }}
+<div class="container">
+    {{ if .Data.Singular }}
+    {{/* Individual tag page - show posts for this tag */}}
+    <div class="hero-section block-display">
+        <h1 class="hero-title">{{ .Title }}</h1>
+        <p class="hero-subtitle">{{ i18n "posts_tagged_with" (dict "Tag" .Title) }}</p>
+    </div>
+
+    <div class="related-media blog-client-stories-wrapper">
+        <div class="main-feature no-subfeature">
+            {{ range .Pages }}
+            {{ partial "blog-card.html" . }}
+            {{ end }}
+        </div>
+    </div>
+    {{ else }}
+    {{/* All tags page */}}
+    <div class="hero-section block-display">
+        <h1 class="hero-title">{{ i18n "hero_title_categories" }}</h1>
+        <p class="hero-subtitle">{{ i18n "hero_subtitle_categories" }}</p>
+    </div>
+
+    <div class="category-list">
+        {{ if .Site.Taxonomies.tags }}
+        <ul class="category-grid">
+            {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+            <li>
+                <a href="{{ printf "/tags/%s" ($name | urlize) | relURL }}" class="category-tag">
+                    {{ $name }} ({{ len $taxonomy }})
+                </a>
+            </li>
+            {{ end }}
+        </ul>
+        {{ else }}
+        <p class="empty-state">{{ i18n "no_categories" }}</p>
+        {{ end }}
+    </div>
+    {{ end }}
+</div>
+{{ end }}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
+    <link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/cgi.css" | relURL }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="main-nav">
+                <div class="site-logo">
+                    <a href="{{ "/" | relURL }}">
+                        <svg width="80" height="40" viewBox="0 0 300.9 140" xmlns="http://www.w3.org/2000/svg">
+                            <style type="text/css">
+                                .st0{fill:#E11937;}
+                            </style>
+                            <g id="Layer_1">
+                                <g>
+                                    <path class="st0" d="M74.8,27c-27.4,0-44.2,21.4-44.2,43c0,26,21.2,43,44.4,43c15.4,0,30-6.8,42.4-17.8v32.2
+          c-13,7.8-30.8,12.6-44.6,12.6C33.2,140,0,107.8,0,70C0,30,33.4,0,73,0c15.2,0,33,4.6,44.6,10.4V42C103,32.4,88.2,27,74.8,27z"/>
+                                    <path class="st0" d="M201.6,140c-39.8,0-73.4-31-73.4-70c0-39.4,33.4-70,75.2-70c15.2,0,34,4,45.6,9.4v31.4
+          C235.8,33.2,218.8,27,204,27c-27.4,0-45.2,21.4-45.2,43c0,25.4,21,43.8,45.6,43.8c5.2,0,10.2-0.4,16.6-2.8V85.8h-22.4V59.2h51.2
+          V130C235.2,136.6,218.8,140,201.6,140z"/>
+                                    <path class="st0" d="M272.1,137.2V2.8h28.8v134.4L272.1,137.2L272.1,137.2z"/>
+                                </g>
+                            </g>
+                        </svg>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="{{ "/" | relURL }}">Home</a></li>
+                    <li><a href="{{ "/authors" | relURL }}">Authors</a></li>
+                    <li><a href="{{ "/tags" | relURL }}">Categories</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="site-main">
+        {{ block "main" . }}{{ end }}
+    </main>
+    
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-section footer-insights">
+                    <div class="logo-footer">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 300.9 140" xml:space="preserve" height="46px" aria-label="CGI official logo">
+                            <style type="text/css">
+                                .st0{fill:#E11937;}
+                            </style>
+                            <g>
+                                <g>
+                                    <path class="st0" d="M74.8,27c-27.4,0-44.2,21.4-44.2,43c0,26,21.2,43,44.4,43c15.4,0,30-6.8,42.4-17.8v32.2
+                        c-13,7.8-30.8,12.6-44.6,12.6C33.2,140,0,107.8,0,70C0,30,33.4,0,73,0c15.2,0,33,4.6,44.6,10.4V42C103,32.4,88.2,27,74.8,27z"/>
+                                    <path class="st0" d="M201.6,140c-39.8,0-73.4-31-73.4-70c0-39.4,33.4-70,75.2-70c15.2,0,34,4,45.6,9.4v31.4
+                        C235.8,33.2,218.8,27,204,27c-27.4,0-45.2,21.4-45.2,43c0,25.4,21,43.8,45.6,43.8c5.2,0,10.2-0.4,16.6-2.8V85.8h-22.4V59.2h51.2
+                        V130C235.2,136.6,218.8,140,201.6,140z"/>
+                                    <path class="st0" d="M272.1,137.2V2.8h28.8v134.4L272.1,137.2L272.1,137.2z"/>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <h2>Insights you can act on</h2>
+                    <p>Founded in 1976, CGI is among the largest IT and business consulting services firms in the world. We are insights-driven and outcomes-focused to help accelerate returns on your investments.</p>
+                    <a href="https://www.cgi.com/en/about-us" class="btn btn-primary">Learn more about CGI</a>
+                    <p class="copyright">&copy; {{ now.Year }} CGI Inc.</p>
+                </div>
+
+                <div class="footer-section footer-links">
+                    <h2>Company</h2>
+                    <ul>
+                        <li><a href="https://www.cgi.com/en/about-us">About us</a></li>
+                        <li><a href="https://www.cgi.com/en/alliances">Alliances</a></li>
+                        <li><a href="https://www.cgi.com/en/esg">ESG</a></li>
+                        <li><a href="https://www.cgi.com/en/about-us/locations">Locations</a></li>
+                        <li><a href="https://www.cgi.com/en/newsroom">Newsroom</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section footer-links">
+                    <h2>Resource center</h2>
+                    <ul>
+                        <li><a href="https://www.cgi.com/en/mediacenter/articles">Articles</a></li>
+                        <li><a href="https://www.cgi.com/en/blogs">Blogs</a></li>
+                        <li><a href="https://www.cgi.com/en/case-studies">Case studies</a></li>
+                        <li><a href="https://www.cgi.com/en/mediacenter/events">Events</a></li>
+                        <li><a href="https://www.cgi.com/en/podcasts">Podcasts</a></li>
+                        <li><a href="https://www.cgi.com/en/mediacenter/viewpoints">Viewpoints</a></li>
+                        <li><a href="https://www.cgi.com/en/mediacenter">See more</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section footer-links">
+                    <h2>Support</h2>
+                    <ul>
+                        <li><a href="https://www.cgi.com/en/accessibility">Accessibility</a></li>
+                        <li><a href="https://www.cgi.com/en/privacy">Privacy</a></li>
+                        <li><a href="https://www.cgi.com/en/legal-restrictions">Terms of use</a></li>
+                        <li><a href="https://www.cgi.com/en/careers/faq">Careers FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section footer-discover">
+                    <h2>Discover more about CGI</h2>
+                    <h3>Keeping you informed</h3>
+                    <a href="https://www.cgi.com/en/content-subscription" class="btn btn-primary">Subscribe</a>
+                    
+                    <div class="social-media">
+                        <h2>Follow us</h2>
+                        <ul class="social-links">
+                            <li><a href="https://www.linkedin.com/company/cgi/" target="_blank" rel="noopener noreferrer" title="Follow CGI on LinkedIn">LinkedIn</a></li>
+                            <li><a href="https://twitter.com/cgi_global" target="_blank" rel="noopener noreferrer" title="Follow CGI on Twitter">Twitter</a></li>
+                            <li><a href="https://www.youtube.com/channel/UCLEgDiEEhnqzIhKgBbDkOTw" target="_blank" rel="noopener noreferrer" title="Follow CGI on YouTube">YouTube</a></li>
+                            <li><a href="https://www.facebook.com/cgigroup/" target="_blank" rel="noopener noreferrer" title="Follow CGI on Facebook">Facebook</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

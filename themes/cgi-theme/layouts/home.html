@@ -1,0 +1,32 @@
+{{ define "main" }}
+<div class="hero-wrapper">
+    <div class="container">
+        <div class="hero-section">
+            {{ if .Site.Params.heroImage }}
+            <div class="hero-image">
+                <img src="{{ .Site.Params.heroImage }}" alt="{{ i18n "default_hero_alt" }}" loading="eager">
+            </div>
+            {{ end }}
+            <div class="hero-content">
+                <h1 class="hero-title">{{ i18n "hero_title_home" }}</h1>
+                <p class="hero-subtitle">{{ i18n "site_subtitle" }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="disclaimer">
+        <p>
+            <strong>{{ i18n "disclaimer_title" }}</strong> {{ i18n "disclaimer_text" }}
+        </p>
+    </div>
+    
+    <div class="related-media blog-client-stories-wrapper">
+        <div class="main-feature no-subfeature">
+            {{ range (where .Site.RegularPages "Type" "posts") }}
+            {{ partial "blog-card.html" . }}
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}

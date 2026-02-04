@@ -1,0 +1,15 @@
+{{ define "main" }}
+<div class="container">
+    <div class="hero-section">
+        <h1 class="hero-title">{{ .Title }}</h1>
+    </div>
+    
+    <div class="related-media blog-client-stories-wrapper">
+        <div class="main-feature no-subfeature">
+            {{ range .Pages }}
+            {{ partial "blog-card.html" . }}
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}

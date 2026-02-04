@@ -1,0 +1,48 @@
+{
+    "feeds": [
+        {
+            "name": "Aiden Vaines",
+            "url": "https://www.vaines.org",
+            "feed_url": "https://www.vaines.org/index.xml",
+            "type": "custom",
+            "enabled": true,
+            "linkedin_url": "https://www.linkedin.com/in/aidenvaines/",
+            "profile_picture_url": "https://www.vaines.org/banner-image.png",
+            "exclude_tags": ["talks"]
+        },
+        {
+            "name": "Will Nossiter",
+            "url": "https://medium.com/@willn2",
+            "feed_url": "https://medium.com/feed/@willn2",
+            "type": "medium",
+            "enabled": true,
+            "linkedin_url": "https://www.linkedin.com/in/willnossiter/",
+            "profile_picture_url": ""
+        },
+        {
+            "name": "Jonathan Relf",
+            "url": "https://jonathanrelf.substack.com/",
+            "feed_url": "https://jonathanrelf.substack.com/feed",
+            "type": "substack",
+            "enabled": true,
+            "linkedin_url": "https://www.linkedin.com/in/jonathan-relf/",
+            "profile_picture_url": "https://media.licdn.com/dms/image/v2/C4D03AQGo2QyHdwQoOQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1556107146008?e=1771459200&v=beta&t=LCG5aL0FUczjkzS_6eD1caJOt6oCBnUPskbCdYxq9sQ"
+        },
+        {
+            "name": "Jane Smith",
+            "url": "https://dev.to/janesmith",
+            "feed_url": "https://dev.to/feed/janesmith",
+            "type": "devto",
+            "enabled": false,
+            "linkedin_url": "",
+            "profile_picture_url": "",
+            "include_tags": ["python", "javascript", "devops"],
+            "exclude_tags": ["sponsored", "advertisement"]
+        }
+    ],
+    "settings": {
+        "max_posts_per_feed": 10,
+        "summary_length": 200,
+        "output_directory": "content/posts"
+    }
+}

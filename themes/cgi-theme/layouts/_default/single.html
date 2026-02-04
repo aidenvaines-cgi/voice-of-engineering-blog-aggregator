@@ -1,0 +1,46 @@
+{{ define "main" }}
+<div class="container">
+    <article class="single-post">
+        {{ if .Params.external_url }}
+        <div class="external-notice">
+            <strong>External Post:</strong> This is a summary. 
+            <a href="{{ .Params.external_url }}" target="_blank" rel="noopener">Read the full article →</a>
+        </div>
+        {{ end }}
+        
+        <header class="post-header">
+            {{ if .Params.featured_image }}
+            <div class="post-image">
+                <img src="{{ .Params.featured_image }}" alt="{{ .Title }}">
+            </div>
+            {{ end }}
+            <h1 class="post-title">{{ .Title }}</h1>
+            <div class="post-meta">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+                {{ if .Params.authors }}
+                <span class="post-author">{{ i18n "by_author" (dict "Author" (index .Params.authors 0)) }}</span>
+                {{ end }}
+            </div>
+        </header>
+        
+        <div class="post-content">
+            {{ .Content }}
+        </div>
+        
+        {{ if .Params.external_url }}
+        <div class="read-full-cta">
+            <a href="{{ .Params.external_url }}" class="cgi-button" target="_blank" rel="noopener">{{ i18n "read_blog" }}</a>
+        </div>
+        {{ end }}
+        
+        {{ if .Params.tags }}
+        <div class="post-tags">
+            <strong>Tags:</strong>
+            {{ range .Params.tags }}
+            <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag">{{ . }}</a>
+            {{ end }}
+        </div>
+        {{ end }}
+    </article>
+</div>
+{{ end }}
