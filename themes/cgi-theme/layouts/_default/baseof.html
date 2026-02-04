@@ -31,9 +31,9 @@
                     </a>
                 </div>
                 <ul class="nav-menu">
-                    <li><a href="{{ "/" | relURL }}">Home</a></li>
-                    <li><a href="{{ "/authors" | relURL }}">Authors</a></li>
-                    <li><a href="{{ "/tags" | relURL }}">Categories</a></li>
+                    <li><a href="{{ .Site.BaseURL }}">Home</a></li>
+                    <li><a href="{{ "authors/" | absURL }}">Authors</a></li>
+                    <li><a href="{{ "tags/" | absURL }}">Categories</a></li>
                 </ul>
             </nav>
         </div>

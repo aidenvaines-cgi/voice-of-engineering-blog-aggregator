@@ -78,15 +78,12 @@ hugo
 
 ### 3. Start development server
 
-For local development, override the baseURL:
+For local development, override the baseURL to match the same path structure as production:
 ```bash
-hugo server --baseURL http://localhost:1313/
+hugo server --baseURL http://localhost:1313/voice-of-engineering-blog-aggregator/
 ```
 
-Or use the shorthand:
-```bash
-hugo server -b http://localhost:1313/
-```
+This ensures all navigation links work correctly with the `/voice-of-engineering-blog-aggregator/` path prefix.
 
 ## Configuration
 

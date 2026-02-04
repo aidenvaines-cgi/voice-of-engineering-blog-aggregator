@@ -11,7 +11,7 @@ defaultContentLanguage = 'en'
     weight = 1
     [languages.en.params]
       description = 'CGI Engineering blog aggregator showcasing thought leadership from our experts'
-  
+
   [languages.fr]
     languageCode = 'fr-FR'
     languageName = 'Français'
