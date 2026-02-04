@@ -3,10 +3,31 @@
 
 <article class="teaser-related">
     <div class="blg-container">
+        {{ $imageToUse := "" }}
         {{ if .Params.featured_image }}
+            {{ $featuredImg := .Params.featured_image }}
+            {{ if or (hasPrefix $featuredImg "http://") (hasPrefix $featuredImg "https://") }}
+                {{/* External URL - use directly */}}
+                {{ $imageToUse = $featuredImg }}
+            {{ else }}
+                {{/* Relative path - check if resource exists */}}
+                {{ $imageResource := .Resources.GetMatch $featuredImg }}
+                {{ if $imageResource }}
+                    {{ $imageToUse = $featuredImg }}
+                {{ else if and (eq .Type "posts") $.Site.Params.defaultPostImage }}
+                    {{/* Image doesn't exist, use default */}}
+                    {{ $imageToUse = ($.Site.Params.defaultPostImage | relURL) }}
+                {{ end }}
+            {{ end }}
+        {{ else if and (eq .Type "posts") $.Site.Params.defaultPostImage }}
+            {{/* No featured_image specified, use default for posts */}}
+            {{ $imageToUse = ($.Site.Params.defaultPostImage | relURL) }}
+        {{ end }}
+        
+        {{ if $imageToUse }}
         <span class="feature-image">
             <a href="{{ if .Params.external_url }}{{ .Params.external_url }}{{ else }}{{ .RelPermalink }}{{ end }}" {{ if .Params.external_url }}target="_blank" rel="noopener"{{ end }}>
-                <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" loading="lazy">
+                <img src="{{ $imageToUse }}" alt="{{ .Title }}" loading="lazy">
             </a>
         </span>
         {{ end }}
