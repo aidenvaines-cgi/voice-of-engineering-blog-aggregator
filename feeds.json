@@ -42,7 +42,7 @@
         {
             "name": "Siddharth Nair",
             "url": "https://sidssn.github.io/",
-            "feed_url": "https://sidssn.github.io/posts/",
+            "feed_url": "https://sidssn.github.io/index.xml",
             "type": "custom",
             "enabled": true,
             "linkedin_url": "https://www.linkedin.com/in/siddharth-nair-161b65a8/",
