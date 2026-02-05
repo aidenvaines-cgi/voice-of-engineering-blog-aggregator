@@ -6,13 +6,12 @@ Fetches posts from multiple RSS feeds and generates Hugo content files.
 
 import feedparser
 import json
-import os
 import re
 import hashlib
+import time
 from datetime import datetime, timedelta
 from pathlib import Path
 from urllib.parse import urlparse
-import requests
 from bs4 import BeautifulSoup
 from dateutil import parser as date_parser
 
@@ -114,7 +113,7 @@ def create_hugo_post(entry, author_name, output_dir, existing_posts, feed_config
             date_obj = datetime.now()
     except:
         date_obj = datetime.now()
-    
+
     # Skip posts older than 12 months
     twelve_months_ago = datetime.now() - timedelta(days=365)
     if date_obj.replace(tzinfo=None) < twelve_months_ago:
@@ -128,20 +127,20 @@ def create_hugo_post(entry, author_name, output_dir, existing_posts, feed_config
     tags = []
     if hasattr(entry, 'tags'):
         tags = [tag.term for tag in entry.tags if hasattr(tag, 'term')]
-    
+
     # Apply tag filtering if feed_config is provided
     if feed_config:
         include_tags = feed_config.get('include_tags', [])
         exclude_tags = feed_config.get('exclude_tags', [])
-        
+
         # If include_tags is specified, only keep tags in that list
         if include_tags:
             tags = [tag for tag in tags if tag.lower() in [t.lower() for t in include_tags]]
-        
+
         # Remove any excluded tags
         if exclude_tags:
             tags = [tag for tag in tags if tag.lower() not in [t.lower() for t in exclude_tags]]
-        
+
         # If post has no tags after filtering and include_tags was specified, skip it
         if include_tags and not tags:
             return None
@@ -209,26 +208,27 @@ def fetch_feed(feed_config, output_dir, existing_posts):
     print(f"Fetching feed for {name}...")
 
     try:
-        # Add headers to help with some feeds that require user-agent
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (compatible; BlogAggregator/1.0)'
-        }
-
-        # Fetch the feed with custom headers and SSL verification disabled for problematic certs
         import ssl
         import urllib.request
-
-        # Create an SSL context that doesn't verify certificates
+        
+        # Create SSL context that doesn't verify certificates (for feeds with cert issues)
         ssl_context = ssl.create_default_context()
         ssl_context.check_hostname = False
         ssl_context.verify_mode = ssl.CERT_NONE
-
-        # Create a request with headers
-        req = urllib.request.Request(url, headers=headers)
-
-        # Parse the feed
-        with urllib.request.urlopen(req, context=ssl_context, timeout=30) as response:
-            feed = feedparser.parse(response.read())
+        
+        # Create custom opener with SSL context and realistic user agent
+        opener = urllib.request.build_opener(
+            urllib.request.HTTPSHandler(context=ssl_context)
+        )
+        opener.addheaders = [
+            ('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'),
+            ('Accept', 'application/rss+xml, application/xml, text/xml, */*'),
+            ('Accept-Language', 'en-US,en;q=0.9'),
+        ]
+        
+        # Use the custom opener to fetch and parse the feed
+        response = opener.open(url, timeout=30)
+        feed = feedparser.parse(response.read())
 
         if feed.bozo and not feed.entries:
             print(f"  ⚠️  Warning: Failed to parse feed for {name}")
@@ -261,12 +261,12 @@ def generate_author_data(config):
     """Generate author data file from feeds configuration."""
     data_dir = Path('data')
     data_dir.mkdir(exist_ok=True)
-    
+
     authors = []
     for feed_config in config['feeds']:
         if not feed_config.get('enabled', True):
             continue
-            
+
         author = {
             'name': feed_config.get('name', 'Unknown'),
             'url': feed_config.get('url', ''),
@@ -275,12 +275,12 @@ def generate_author_data(config):
             'profile_picture_url': feed_config.get('profile_picture_url', '')
         }
         authors.append(author)
-    
+
     # Write authors data to JSON file
     authors_file = data_dir / 'authors.json'
     with open(authors_file, 'w') as f:
         json.dump({'authors': authors}, f, indent=2)
-    
+
     print(f"Generated author data for {len(authors)} author(s)")
 
 
@@ -307,12 +307,17 @@ def main():
 
     # Process each feed
     total_created = 0
-    for feed_config in config['feeds']:
-        if not feed_config.get('enabled', True):
-            continue
-
+    enabled_feeds = [f for f in config['feeds'] if f.get('enabled', True)]
+    
+    for idx, feed_config in enumerate(enabled_feeds):
         created = fetch_feed(feed_config, output_dir, existing_posts)
         total_created += created
+        
+        # Add delay between requests to avoid rate limiting (except for last feed)
+        if idx < len(enabled_feeds) - 1:
+            delay = 2  # 2 seconds between feeds
+            print(f"  ⏱️  Waiting {delay}s before next feed...")
+            time.sleep(delay)
 
     print("\n" + "=" * 60)
     print(f"Aggregation complete! Created {total_created} new post(s)")
